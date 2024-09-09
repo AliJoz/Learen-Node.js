@@ -35,6 +35,8 @@
 // در تمرین زیر  اسم و نام خانوادگی زیر وارد کن و سن را وارد کن اگر بالای 22 سال بود در فایل ننویس
 const readline = require("readline");
 const fs = require("fs");
+const { error } = require("console");
+const { stringify } = require("querystring");
 
 // ایجاد رابط برای ورودی و خروجی
 const rl = readline.createInterface({
@@ -42,23 +44,29 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-// گرفتن ورودی از کاربر
-rl.question("pls inpu FName and lastName ", (name) => {
-  rl.question("pls input phone: ", (phone) => {
-    rl.question("pls num student: ", (studentId) => {
-      rl.question("pls input age: ", (age) => {
-        // ساختن رشته اطلاعات
-        const data = `${name}\t ${phone}\t ${studentId}\t ${age}\n`;
+// // گرفتن ورودی از کاربر
+// rl.question("pls inpu FName and lastName ", (name) => {
+//   rl.question("pls input phone: ", (phone) => {
+//     rl.question("pls num student: ", (studentId) => {
+//       rl.question("pls input age: ", (age) => {
+//         // ساختن رشته اطلاعات
+//         const data = `${name}\t ${phone}\t ${studentId}\t ${age}\n`;
 
-        // نوشتن داده‌ها به فایل
-        fs.appendFile('user_data.txt', data, (err) => {
-          if (err) throw err;
-          console.log('اطلاعات شما در فایل ذخیره شد.');
+//         // نوشتن داده‌ها به فایل
+//         fs.appendFile('user_data.txt', data, (err) => {
+//           if (err) throw err;
+//           console.log('اطلاعات شما در فایل ذخیره شد.');
           
-          // بستن رابط پس از ذخیره اطلاعات
-          rl.close();
-        });
-      });
-    });
-  });
-});
+//           // بستن رابط پس از ذخیره اطلاعات
+//           rl.close();
+//         });
+//       });
+//     });
+//   });
+// });
+fs.readFile("./data.json",(err,data)=>{
+  if(err){
+     throw err
+  }
+  console.log(JSON.parse(data))
+})
